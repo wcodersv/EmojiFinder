@@ -1,0 +1,124 @@
+:root {
+  --cyan-100: #cff4fc;
+}
+
+body {
+  max-width: 1440px;
+  height: 295px;
+  font-family: "Inter", sans-serif;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/*HEADER*/
+.header {
+  height: 295px;
+  border: 1px solid var(--stroke-input, #ced4da);
+  background: linear-gradient(134deg, #087990 0%, #055160 100%);
+}
+
+.header-title {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 68px;
+  margin-bottom: 68px;
+}
+
+.header-title h1 {
+  color: var(--cyan-100, #cff4fc);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: normal;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.header-title p {
+  color: var(--cyan-100, #cff4fc);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 36px;
+}
+
+/*MAIN*/
+.main {
+  max-width: 986px;
+  height: 519px;
+  position: relative;
+  top: 0;
+  left: 0;
+
+  margin: 0 auto;
+  padding-top: 80px;
+  margin-bottom: 50px;
+  margin: 0 auto;
+}
+
+/*MAIN - INPUT*/
+.input-search input {
+  width: 820px;
+  height: 64px;
+
+  border-radius: 4px;
+  border: 1px solid var(--stroke-input, #ced4da);
+  background: var(--gray-white, #fff);
+
+  position: absolute;
+  top: -32px;
+  left: 83px;
+}
+
+input:placeholder-shown {
+  color: var(--secondary-light-color, #abb5be);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-left: 32px;
+}
+
+/*MAIN - CARD*/
+.field-cards{
+    
+}
+
+
+
+
+.card-body { /*для ul*/
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 184px);
+  grid-row-gap: 19px;
+  grid-column-gap: 22px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.card { /*для li*/
+  width: 316px;
+  height: 184px;
+  border-radius: 4px;
+  border: 1px solid var(--stroke-light, #dee2e6);
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/*FOOTER*/
+.footer {
+  max-width: 986px;
+  border-top: #ced4da solid 1px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.footer__title {
+  color: var(--secondary-color, #6c757d);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  margin-top: 13px;
+  padding-bottom: 17px;
+}
