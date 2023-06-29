@@ -1,43 +1,64 @@
-import { data } from "./test.js";
+import { data } from "./database.js";
 
 // Получаем элемент <div> с классом .field-cards
-let cardBodyDiv = document.querySelector('.field-cards');
+let cardBodyDiv = document.querySelector(".field-cards");
 
 // Создаем элемент <ul>
-let ulElement = document.createElement('ul');
+let ulElement = document.createElement("ul");
 
 // Добавляем класс "card-body" к элементу <ul>
-ulElement.classList.toggle('card-body');
+ulElement.classList.add("card-body");
 
 // Добавляем элемент <ul> внутрь элемента <div>
 cardBodyDiv.append(ulElement);
 
-for (let obj = 0; obj < data.length; obj++) {
-    let liElement = document.createElement('li');
-    liElement.classList.add('card');
+function renderDataList(searchKeyword) {
+    let filteredData;
+    if (!searchKeyword) {
+        filteredData = data;
+    } else {
+        filteredData = data.filter((obj) => obj.keywords.includes(searchKeyword));
+    }
 
-    let titleObj = document.createElement('h2');
-    titleObj.textContent = data[obj].title;
+    clearList();
 
-    let symbolObj = document.createElement('p');
-    symbolObj.textContent = data[obj].symbol;
+    for (let obj of filteredData) {
+        let liElement = document.createElement("li");
+        liElement.classList.add("card");
 
-    let keywordsObj = document.createElement('p');
-    keywordsObj.textContent = data[obj].keywords;
+        let divElement = document.createElement("div");
+        divElement.classList.add("card-inform");
+        liElement.append(divElement);
 
-    liElement.append(titleObj);
-    liElement.append(symbolObj);
-    liElement.append(keywordsObj);
-    
+        let titleObj = document.createElement("h2");
+        titleObj.textContent = obj.title;
+        titleObj.classList.add("card-inform__title");
 
-    ulElement.append(liElement);
+        let symbolObj = document.createElement("p");
+        symbolObj.textContent = obj.symbol;
+        symbolObj.classList.add("card-inform__symbol");
 
+        let keywordsObj = document.createElement("p");
+        keywordsObj.textContent = obj.keywords;
+        keywordsObj.classList.add("card-inform__description");
+
+        divElement.append(symbolObj);
+        divElement.append(titleObj);
+        divElement.append(keywordsObj);
+
+        ulElement.append(liElement);
+    }
 }
 
+renderDataList();
 
-/* {
-    title: "100",
-    symbol: "💯",
-    keywords:
-      "hundred points symbol symbol wow wow win win perfect perfect parties parties",
-  }, */
+let inputElement = document.getElementById("search");
+inputElement.addEventListener("change", function (event) {
+    renderDataList(event.target.value);
+});
+
+function clearList() {
+    while (ulElement.firstChild) {
+        ulElement.removeChild(ulElement.firstChild);
+    }
+}
