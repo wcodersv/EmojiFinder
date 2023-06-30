@@ -1,10 +1,10 @@
 import { data } from "./database.js";
 
 // Получаем элемент <div> с классом .field-cards
-let cardBodyDiv = document.querySelector(".field-cards");
+const cardBodyDiv = document.querySelector(".field-cards");
 
 // Создаем элемент <ul>
-let ulElement = document.createElement("ul");
+const ulElement = document.createElement("ul");
 
 // Добавляем класс "card-body" к элементу <ul>
 ulElement.classList.add("card-body");
@@ -52,7 +52,7 @@ function renderDataList(searchKeyword) {
 
 renderDataList();
 
-let inputElement = document.getElementById("search");
+const inputElement = document.getElementById("search");
 inputElement.addEventListener("change", function (event) {
     renderDataList(event.target.value);
 });
