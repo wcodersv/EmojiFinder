@@ -10,21 +10,21 @@ function renderCard(card) {
     divElement.classList.add("card-inform");
     liElement.append(divElement);
 
-    const titleObj = document.createElement("h2");
-    titleObj.textContent = card.title;
-    titleObj.classList.add("card-inform__title");
+    const titleElement = document.createElement("h2");
+    titleElement.textContent = card.title;
+    titleElement.classList.add("card-inform__title");
 
-    const symbolObj = document.createElement("p");
-    symbolObj.textContent = card.symbol;
-    symbolObj.classList.add("card-inform__symbol");
+    const symbolElement = document.createElement("p");
+    symbolElement.textContent = card.symbol;
+    symbolElement.classList.add("card-inform__symbol");
 
-    const keywordsObj = document.createElement("p");
-    keywordsObj.textContent = card.keywords;
-    keywordsObj.classList.add("card-inform__description");
+    const keywordsElement = document.createElement("p");
+    keywordsElement.textContent = card.keywords;
+    keywordsElement.classList.add("card-inform__description");
 
-    divElement.append(symbolObj);
-    divElement.append(titleObj);
-    divElement.append(keywordsObj);
+    divElement.append(symbolElement);
+    divElement.append(titleElement);
+    divElement.append(keywordsElement);
 
     ulElement.append(liElement);
 }
