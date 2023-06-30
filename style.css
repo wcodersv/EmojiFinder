@@ -3,7 +3,7 @@
 }
 
 body {
-  max-width: 1440px;  
+  max-width: 1440px;
   font-family: "Inter", sans-serif;
   margin: 0 auto;
   padding: 0;
@@ -39,7 +39,7 @@ body {
 
 /*MAIN*/
 .main {
-  max-width: 986px;  
+  max-width: 986px;
   position: relative;
   top: 0;
   left: 0;
@@ -80,7 +80,7 @@ input:placeholder-shown {
 
 /*MAIN - CARD*/
 .field-cards {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .card-body {
