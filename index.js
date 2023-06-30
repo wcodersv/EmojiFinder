@@ -89,7 +89,5 @@ inputElement.addEventListener("input", function (event) {
 
 /*Функция для удаления li внутри ul*/
 function clearList() {
-    while (ulElement.firstChild) {
-        ulElement.removeChild(ulElement.firstChild);
-    }
+    ulElement.innerHTML = "";
 }
