@@ -2,48 +2,58 @@ import { data } from "./database.js";
 
 const ulElement = document.querySelector(".card-body");
 
-function renderDataList(searchKeyword) {
-    let filteredData;
+function renderCard(card) {
+    const liElement = document.createElement("li");
+    liElement.classList.add("card");
+
+    const divElement = document.createElement("div");
+    divElement.classList.add("card-inform");
+    liElement.append(divElement);
+
+    const titleObj = document.createElement("h2");
+    titleObj.textContent = card.title;
+    titleObj.classList.add("card-inform__title");
+
+    const symbolObj = document.createElement("p");
+    symbolObj.textContent = card.symbol;
+    symbolObj.classList.add("card-inform__symbol");
+
+    const keywordsObj = document.createElement("p");
+    keywordsObj.textContent = card.keywords;
+    keywordsObj.classList.add("card-inform__description");
+
+    divElement.append(symbolObj);
+    divElement.append(titleObj);
+    divElement.append(keywordsObj);
+
+    ulElement.append(liElement);
+}
+
+
+function filterCards(searchKeyword) {
     if (!searchKeyword) {
-        filteredData = data;
-    } else {
-        filteredData = data.filter((obj) => obj.keywords.includes(searchKeyword));
+        return data;
     }
 
+    function isCardMatched(card) {
+        return card.keywords.includes(searchKeyword);
+    }
+
+    return data.filter(isCardMatched);
+}
+
+
+
+function renderDataList(searchKeyword) {
     clearList();
 
-    for (let obj of filteredData) {
-        const liElement = document.createElement("li");
-        liElement.classList.add("card");
-
-        const divElement = document.createElement("div");
-        divElement.classList.add("card-inform");
-        liElement.append(divElement);
-
-        const titleObj = document.createElement("h2");
-        titleObj.textContent = obj.title;
-        titleObj.classList.add("card-inform__title");
-
-        const symbolObj = document.createElement("p");
-        symbolObj.textContent = obj.symbol;
-        symbolObj.classList.add("card-inform__symbol");
-
-        const keywordsObj = document.createElement("p");
-        keywordsObj.textContent = obj.keywords;
-        keywordsObj.classList.add("card-inform__description");
-
-        divElement.append(symbolObj);
-        divElement.append(titleObj);
-        divElement.append(keywordsObj);
-
-        ulElement.append(liElement);
-    }
+    filterCards(searchKeyword).forEach(renderCard);
 }
 
 renderDataList();
 
 const inputElement = document.getElementById("search");
-inputElement.addEventListener("change", function (event) {
+inputElement.addEventListener("input", function (event) {
     renderDataList(event.target.value);
 });
 
