@@ -18,10 +18,8 @@ body {
 }
 
 .header-title {
-  margin: 0 auto;
+  margin: 68px auto 68px;
   text-align: center;
-  margin-top: 68px;
-  margin-bottom: 68px;
 }
 
 .header-title h1 {
