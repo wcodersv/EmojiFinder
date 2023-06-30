@@ -1,16 +1,6 @@
 import { data } from "./database.js";
 
-// Получаем элемент <div> с классом .field-cards
-const cardBodyDiv = document.querySelector(".field-cards");
-
-// Создаем элемент <ul>
-const ulElement = document.createElement("ul");
-
-// Добавляем класс "card-body" к элементу <ul>
-ulElement.classList.add("card-body");
-
-// Добавляем элемент <ul> внутрь элемента <div>
-cardBodyDiv.append(ulElement);
+const ulElement = document.querySelector(".card-body");
 
 function renderDataList(searchKeyword) {
     let filteredData;
@@ -23,22 +13,22 @@ function renderDataList(searchKeyword) {
     clearList();
 
     for (let obj of filteredData) {
-        let liElement = document.createElement("li");
+        const liElement = document.createElement("li");
         liElement.classList.add("card");
 
-        let divElement = document.createElement("div");
+        const divElement = document.createElement("div");
         divElement.classList.add("card-inform");
         liElement.append(divElement);
 
-        let titleObj = document.createElement("h2");
+        const titleObj = document.createElement("h2");
         titleObj.textContent = obj.title;
         titleObj.classList.add("card-inform__title");
 
-        let symbolObj = document.createElement("p");
+        const symbolObj = document.createElement("p");
         symbolObj.textContent = obj.symbol;
         symbolObj.classList.add("card-inform__symbol");
 
-        let keywordsObj = document.createElement("p");
+        const keywordsObj = document.createElement("p");
         keywordsObj.textContent = obj.keywords;
         keywordsObj.classList.add("card-inform__description");
 
