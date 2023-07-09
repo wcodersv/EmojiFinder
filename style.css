@@ -27,7 +27,7 @@ body {
   color: var(--cyan-100, #cff4fc);
   font-size: 72px;
   font-weight: 700;
-  line-height: normal;  
+  line-height: normal;
   margin: 0 0 0 4px;
 }
 
@@ -98,7 +98,7 @@ input:placeholder-shown {
 
 .card {
   /*для li*/
- /* width: 316px;*/
+  /* width: 316px;*/
   height: 184px;
   border-radius: 4px;
   border: 1px solid var(--stroke-light, #dee2e6);
@@ -151,7 +151,7 @@ input:placeholder-shown {
   font-size: 12px;
   font-weight: 400;
   line-height: normal;
-  
+
 
   padding: 0;
   margin: 0;
@@ -173,4 +173,106 @@ input:placeholder-shown {
   line-height: 21px;
   margin-top: 13px;
   padding-bottom: 17px;
+}
+
+
+/*PAGINATION - NAV*/
+.pagination-nav {
+  max-width: 986px;
+  height: 40px;
+  border-top: #ced4da solid 1px;
+  margin: 0 auto;
+  padding: 19px 0 19px 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+
+/*PAGINATION - NAV - pages*/
+.pagination-nav__pages {}
+
+.pages-bar {
+  /*для ul*/
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+
+  margin: 0;
+  padding: 0;
+}
+
+.pages-bar li {
+  /*для li*/
+  padding: 12px 14px;
+  gap: 10px;
+
+  border: 1px solid var(--stroke-light, #DEE2E6);
+  background: var(--gray-white, #FFF);
+
+  color: var(--cyan-800, #055160);
+  line-height: 16px;
+  cursor: pointer;
+
+}
+
+/* .pages-bar li:first-child {
+  border-radius: 4px 0px 0px 4px;
+  color: var(--secondary-light-color, #ABB5BE);
+
+} */
+
+
+/*PAGINATION - NAV - perpage*/
+
+.pagination-nav__perpage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pagination-nav__perpage p {
+  color: #000;
+  text-align: right;
+  line-height: 21px;
+  padding: 0 12px 0 0;
+  margin: 0;
+}
+
+.list {
+  box-sizing: border-box;
+  width: 120px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #CED4DA;
+  background: #FFF;
+
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: var(--secondary-color, #6C757D);
+  line-height: 21px;
+}
+
+.list option {
+  color: var(--secondary-color, #6C757D);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+
+.pages-bar li.active {
+  border: 1px solid var(--cyan-800, #055160);
+  background: var(--cyan-800, #055160);
+
+  color: var(--gray-white, #FFF);
+  line-height: 16px;
+
 }
