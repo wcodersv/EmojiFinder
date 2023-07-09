@@ -1,15 +1,63 @@
-import { data } from "./database.js";
+
+let filteredCards;
+let prevSearchKeyword;
+
+/* Привязывание обработчика к элементу input */
+const inputElement = document.getElementById("search");
+inputElement.addEventListener("input", function (event) {
+    renderAllPage(event.target.value, 0, +cardsOnPageCount.value);
+});
+
+/* Привязывание обработчика к элементу select */
+const cardsOnPageCount = document.querySelector('#list-pages');
+cardsOnPageCount.addEventListener("change", function (event) {
+    renderAllPage(inputElement.value, 0, +event.target.value);
+});
+
+/* Привязывание обработчика к элементу ul/li */
+const pagesBar = document.querySelector('.pages-bar');
+pagesBar.addEventListener("click", function (event) {
+    renderAllPage(inputElement.value, event.target.dataset.value, +cardsOnPageCount.value);
+})
+
+let ldsEllipsis = document.querySelector('.lds-ellipsis');
+
+/* Функция для получения карточек по фильтру из API */
+function fetchCards(searchKeyword, onCardCallback) {
+    let url;
+    if (!searchKeyword) {
+        url = "http://api.codeoverdose.space/api/emoji/v1";
+    } else {
+        url = `http://api.codeoverdose.space/api/emoji/v1/find/?query=${searchKeyword}`;
+    }
+
+    ldsEllipsis.style.display = 'block';
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            filteredCards = data;
+            onCardCallback();
+            ldsEllipsis.style.display = 'none';
+        })
+        .catch((error) => {
+            console.log("Произошла ошибка", error);
+        });
+}
 
 const ulElement = document.querySelector(".card-body");
 
-let filteredCards = data;
-let prevSearchKeyword = '';
+/* Функция для отрисовки всей страницы */
 function renderAllPage(searchKeyword, currentPage, cardsOnPage) {
     if (searchKeyword !== prevSearchKeyword) {
-        filteredCards = filterCards(searchKeyword);
+        fetchCards(searchKeyword, () => renderPageElements(filteredCards, currentPage, cardsOnPage));
         prevSearchKeyword = searchKeyword;
+    } else {
+        renderPageElements(filteredCards, currentPage, cardsOnPage);
     }
+}
 
+/* Функция для отрисовки элементов страницы */
+function renderPageElements(filteredCards, currentPage, cardsOnPage) {
     const allPagesCount = calculateAllPagesCount(filteredCards.length, cardsOnPage);
     currentPage = convertCurrentPageToNumber(currentPage, allPagesCount);
     validateCurrentPage(currentPage, allPagesCount);
@@ -70,57 +118,7 @@ function createUniqueWordsFromString(string) {
     return new Set(splitWords);
 }
 
-/*Функция для фильтрации карточек по ключевым словам*/
-function filterCards(searchKeyword) {
-    if (!searchKeyword) {
-        return data;
-    }
-
-    let searchKeywordsSet = createUniqueWordsFromString(searchKeyword);
-
-    /*Функция для проверки совпадает ли карточка с ключевыми словами*/
-    function isCardMatched(card) {
-        const titleSet = createUniqueWordsFromString(card.title);
-        const keywordsSet = createUniqueWordsFromString(card.keywords);
-
-        return (
-            hasIntersection(titleSet, searchKeywordsSet) ||
-            hasIntersection(keywordsSet, searchKeywordsSet)
-        );
-    }
-
-    return data.filter(isCardMatched);
-}
-
-/* Функция для проверки пересечений между двумя Set */
-function hasIntersection(set1, set2) {
-    for (const value of set1) {
-        if (set2.has(value)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-/* Привязывание обработчика к элементу input */
-const inputElement = document.getElementById("search");
-inputElement.addEventListener("input", function (event) {
-    renderAllPage(event.target.value, 0, +cardsOnPageCount.value);
-});
-
-/* Реализация пагинации */
-const cardsOnPageCount = document.querySelector('#list-pages');
-const pagesBar = document.querySelector('.pages-bar');
-
-cardsOnPageCount.addEventListener("change", function (event) {
-    renderAllPage(inputElement.value, 0, +event.target.value);
-});
-
-pagesBar.addEventListener("click", function (event) {
-    renderAllPage(inputElement.value, event.target.dataset.value, +cardsOnPageCount.value);
-})
-
-
+/*** РЕАЛИЗАЦИЯ ПАГИНАЦИИ ***/
 /* Функция для отрисовки цифр */
 function renderPagesBar(allPagesCount, currentPage) {
     pagesBar.innerHTML = "";
@@ -182,10 +180,12 @@ function creatPageIndices(allPagesCount, currentPage) {
     return pageIndices;
 }
 
+/* Функция для подсчета количества страниц */
 function calculateAllPagesCount(allCardsCount, cardsOnPage) {
     return Math.max(Math.ceil(allCardsCount / cardsOnPage), 1);
 }
 
+/* Функция для конвертации номера страницы (строка) в число */
 function convertCurrentPageToNumber(currentPage, allPagesCount) {
     if (currentPage === 'First') {
         currentPage = 0;
@@ -197,6 +197,7 @@ function convertCurrentPageToNumber(currentPage, allPagesCount) {
     return currentPage;
 }
 
+/* Функция для проверки корректности текущего номера страниц */
 function validateCurrentPage(currentPage, allPagesCount) {
     if (currentPage < 0 || currentPage >= allPagesCount) {
         throw new Error(`currentPage out of range: ${currentPage}`);
