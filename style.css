@@ -179,7 +179,6 @@ input:placeholder-shown {
 /*PAGINATION - NAV*/
 .pagination-nav {
   max-width: 986px;
-  height: 40px;
   border-top: #ced4da solid 1px;
   margin: 0 auto;
   padding: 19px 0 19px 0;
@@ -246,7 +245,6 @@ input:placeholder-shown {
 .list {
   box-sizing: border-box;
   width: 120px;
-  height: 40px;
   border-radius: 4px;
   border: 1px solid #CED4DA;
   background: #FFF;
@@ -255,6 +253,7 @@ input:placeholder-shown {
   font-size: 16px;
   color: var(--secondary-color, #6C757D);
   line-height: 21px;
+  padding: 9px 0 8px 15px;
 }
 
 .list option {
@@ -275,7 +274,7 @@ input:placeholder-shown {
 
 }
 
-/*Loaders*/
+/*Loader*/
 .lds-ellipsis {
   /* display: block; */
   display: none;

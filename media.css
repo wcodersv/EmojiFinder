@@ -15,6 +15,13 @@
   .footer {
     max-width: 900px;
   }
+
+
+  .pagination-nav {
+    max-width: 700px;
+    padding: 15px 0 15px 0;
+  }
+
 }
 
 /*950px*/
@@ -82,6 +89,22 @@
   .footer {
     max-width: 650px;
   }
+
+  .pagination-nav {
+    max-width: 500px;
+    padding: 10px 0 10px 0;
+  }
+
+  .pages-bar li {
+    /*для li*/
+    padding: 8px 9px;
+  }
+
+  .list {
+    width: 80px;
+    padding: 5px 0 5px 10px;
+  }
+
 }
 
 /*680px*/
@@ -188,10 +211,18 @@
     left: 25px;
   }
 
-  
-
   .footer {
     max-width: 400px;
+  }
+
+  .pagination-nav {
+    max-width: 400px;
+    font-size: 14px;
+  }
+
+  .list {
+    width: 60px;
+    font-size: 14px;
   }
 }
 
@@ -231,6 +262,21 @@
   .footer {
     max-width: 350px;
   }
+
+  .pagination-nav {
+    max-width: 350px;
+    font-size: 12px;
+  }
+
+  .pagination-nav__perpage p {
+    padding: 0 7px 0 0;
+  }
+
+  .list {
+    width: 40px;
+    font-size: 12px;
+    padding-left: 0;
+  }
 }
 
 /*380px*/
@@ -261,6 +307,7 @@
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 15px;
   }
+
   .card {
     height: 145px;
   }
@@ -287,4 +334,20 @@
   .footer {
     max-width: 250px;
   }
+
+  .pagination-nav {
+    max-width: 250px;
+    font-size: 16px;
+    display: block;
+  }
+
+  .pagination-nav__pages {
+    margin-bottom: 15px;
+  }
+
+  .pagination-nav__perpage {
+    margin-bottom: 20px;
+  }
+
+
 }
