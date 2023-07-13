@@ -26,9 +26,9 @@ let ldsEllipsis = document.querySelector('.lds-ellipsis');
 function fetchCards(searchKeyword, onCardCallback) {
     let url;
     if (!searchKeyword) {
-        url = "https://api.codeoverdose.space/api/emoji/v1";
+        url = "http://api.codeoverdose.space/api/emoji/v1";
     } else {
-        url = `https://api.codeoverdose.space/api/emoji/v1/find/?query=${searchKeyword}`;
+        url = `http://api.codeoverdose.space/api/emoji/v1/find/?query=${searchKeyword}`;
     }
 
     ldsEllipsis.style.display = 'block';
