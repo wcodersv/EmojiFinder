@@ -42,7 +42,7 @@ function fetchCards(searchKeyword, onCardCallback) {
         .catch((error) => {
             ldsEllipsis.style.display = 'none';
             console.log("Произошла ошибка", error);
-            alert('Упссс! Ошибка не моя, что-то с API')
+            alert('Упссс! Ошибка не моя, что-то не так с API (http://api.codeoverdose.space/api/emoji/v1)')
         });
 }
 
