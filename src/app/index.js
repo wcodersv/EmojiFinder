@@ -40,7 +40,9 @@ function fetchCards(searchKeyword, onCardCallback) {
             ldsEllipsis.style.display = 'none';
         })
         .catch((error) => {
+            ldsEllipsis.style.display = 'none';
             console.log("Произошла ошибка", error);
+            alert('Упссс! Ошибка не моя, что-то с API')
         });
 }
 
