@@ -1,6 +1,6 @@
 <h2>Сервис по поиску emoji по ключевым словам (метод fetch, API)</h2>
 
-### <a href="https://wcodersv.github.io/EmojiFinder/">Посмотреть сайт</a>
+### Посмотреть сайт можно справа, под разделом 'About'.
 
 <details>
 <summary>Ошибка: страница не прогружается</summary>
